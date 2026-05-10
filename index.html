@@ -19,7 +19,6 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -99,11 +98,7 @@ main {
   letter-spacing: -0.025em;
   text-transform: uppercase;
 }
-.hero h1 .accent {
-  color: var(--red);
-  font-style: italic;
-  font-weight: 800;
-}
+.hero h1 .accent { color: var(--red); font-style: italic; font-weight: 800; }
 .hero .lede {
   font-family: 'Fraunces', serif;
   font-style: italic;
@@ -115,11 +110,7 @@ main {
   line-height: 1.55;
   opacity: 0.88;
 }
-.hero .lede em {
-  font-style: normal;
-  font-weight: 600;
-  color: var(--red);
-}
+.hero .lede em { font-style: normal; font-weight: 600; color: var(--red); }
 
 .hero-stats {
   display: flex;
@@ -323,45 +314,96 @@ main {
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s ease;
+  z-index: 5;
 }
-.card:hover { transform: translateY(-6px); box-shadow: 0 22px 44px -12px rgba(0,0,0,0.6), 0 0 30px var(--red-glow); border-color: rgba(224, 58, 63, 0.5); }
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px -12px rgba(0,0,0,0.6), 0 0 30px var(--red-glow);
+  border-color: rgba(224, 58, 63, 0.5);
+}
 .card:hover::before { transform: scaleX(1); }
 .card.hidden { display: none; }
 
-.card .num-zone {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 1.5rem 1.5rem 0;
+/* === PHOTO ZONE === */
+.photo-zone {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(224,58,63,0.18), transparent 65%),
+    linear-gradient(135deg, var(--navy-2) 0%, var(--navy-3) 100%);
 }
+.photo-zone::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(245,241,232,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,241,232,0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 0;
+}
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+  z-index: 1;
+  filter: drop-shadow(-4px 8px 16px rgba(0,0,0,0.5));
+  transition: transform 0.5s ease;
+}
+.card:hover .photo { transform: scale(1.04); }
+.photo.broken { display: none; }
+
 .card .number {
+  position: absolute;
+  bottom: -14px;
+  left: 1rem;
+  z-index: 2;
   font-family: 'Big Shoulders Display', sans-serif;
   font-weight: 900;
-  font-size: 5.5rem;
+  font-size: 7rem;
   line-height: 0.85;
   letter-spacing: -0.04em;
   color: var(--cream);
   font-feature-settings: "tnum";
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.25);
+  pointer-events: none;
 }
 .card .number .hash {
   color: var(--red);
-  font-size: 1.75rem;
+  font-size: 2rem;
   vertical-align: super;
   line-height: 1;
   font-weight: 700;
+  text-shadow: none;
 }
 .card .pos-tag {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 3;
   font-family: 'DM Mono', monospace;
   font-size: 0.65rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--grey);
+  color: var(--cream);
+  background: rgba(0, 20, 40, 0.7);
+  backdrop-filter: blur(4px);
   border: 1px solid rgba(245, 241, 232, 0.2);
   padding: 0.3rem 0.55rem;
-  margin-top: 0.5rem;
   white-space: nowrap;
 }
-.card .body { padding: 0.75rem 1.5rem 1.5rem; }
+
+.card .body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(0,20,40,0) 0%, var(--navy) 30%);
+}
 .card .name {
   font-family: 'Big Shoulders Display', sans-serif;
   font-weight: 800;
@@ -443,7 +485,7 @@ main {
   position: fixed;
   top: 50%; left: 50%;
   transform: translate(-50%, -45%);
-  max-width: 720px;
+  max-width: 760px;
   width: calc(100% - 3rem);
   max-height: 88vh;
   background: var(--navy);
@@ -459,53 +501,71 @@ main {
 
 .modal-head {
   background: linear-gradient(135deg, var(--navy-2), var(--navy-3));
-  padding: 2.5rem 2.5rem 2rem;
+  padding: 2rem 2.5rem 1.5rem;
   border-bottom: 2px solid var(--red);
   position: relative;
   overflow: hidden;
+  min-height: 240px;
 }
 .modal-head::before {
   content: '';
   position: absolute;
   top: -100px; right: -100px;
   width: 350px; height: 350px;
-  background: radial-gradient(circle, rgba(224, 58, 63, 0.25), transparent 70%);
+  background: radial-gradient(circle, rgba(224, 58, 63, 0.3), transparent 70%);
   filter: blur(40px);
   pointer-events: none;
+}
+.modal-photo {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  object-fit: contain;
+  object-position: right bottom;
+  z-index: 1;
+  filter: drop-shadow(-6px 0 24px rgba(0,0,0,0.5));
+}
+.modal-photo.broken { display: none; }
+.modal-head-content {
+  position: relative;
+  z-index: 2;
+  max-width: 60%;
 }
 .modal-close {
   position: absolute;
   top: 1rem; right: 1rem;
-  background: rgba(224, 58, 63, 0.2);
+  background: rgba(224, 58, 63, 0.25);
   border: 1px solid var(--red);
   color: var(--cream);
   width: 2.5rem; height: 2.5rem;
   cursor: pointer;
   font-size: 1.2rem;
   font-family: 'DM Mono', monospace;
-  z-index: 1;
+  z-index: 10;
   transition: background 0.2s, transform 0.2s;
+  backdrop-filter: blur(4px);
 }
 .modal-close:hover { background: var(--red); transform: rotate(90deg); }
 
 .modal-num {
   font-family: 'Big Shoulders Display', sans-serif;
   font-weight: 900;
-  font-size: 7rem;
+  font-size: 6rem;
   line-height: 0.85;
   color: var(--red);
   letter-spacing: -0.04em;
-  position: relative;
   font-feature-settings: "tnum";
 }
 .modal-name {
   font-family: 'Big Shoulders Display', sans-serif;
   font-weight: 900;
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   text-transform: uppercase;
   margin-top: 0.5rem;
   letter-spacing: -0.01em;
-  position: relative;
+  line-height: 1;
 }
 .modal-meta {
   font-family: 'DM Mono', monospace;
@@ -514,7 +574,6 @@ main {
   text-transform: uppercase;
   color: var(--grey);
   margin-top: 0.6rem;
-  position: relative;
 }
 
 .modal-body { padding: 2rem 2.5rem 2.5rem; }
@@ -588,20 +647,23 @@ footer {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--grey);
+  line-height: 1.8;
 }
 footer .accent { color: var(--red); }
+footer .credit { display: block; margin-top: 0.5rem; font-size: 0.6rem; opacity: 0.6; text-transform: none; letter-spacing: 0.05em; }
 
 /* === MOBILE === */
 @media (max-width: 600px) {
   main { padding: 1rem 1rem 3rem; }
   .search-shell { padding: 1.5rem; }
-  .modal-head { padding: 1.75rem 1.5rem 1.5rem; }
+  .modal-head { padding: 1.5rem 1.5rem 1.25rem; min-height: 200px; }
   .modal-body { padding: 1.5rem; }
-  .modal-num { font-size: 5rem; }
-  .modal-name { font-size: 1.85rem; }
-  .card .number { font-size: 4.5rem; }
-  .card .num-zone { padding: 1.25rem 1.25rem 0; }
-  .card .body { padding: 0.75rem 1.25rem 1.25rem; }
+  .modal-num { font-size: 4.5rem; }
+  .modal-name { font-size: 1.65rem; }
+  .modal-photo { width: 45%; opacity: 0.7; }
+  .modal-head-content { max-width: 65%; }
+  .card .number { font-size: 6rem; }
+  .photo-zone { height: 220px; }
 }
 </style>
 </head>
@@ -653,6 +715,7 @@ footer .accent { color: var(--red); }
 
   <footer>
     Cheat sheet · Go Mystics <span class="accent">★</span> #TogetherDC
+    <span class="credit">Player photos courtesy ESPN · Data via WNBA</span>
   </footer>
 </main>
 
@@ -660,9 +723,12 @@ footer .accent { color: var(--red); }
 <div class="modal" id="modal" role="dialog" aria-modal="true">
   <div class="modal-head">
     <button class="modal-close" id="modalClose" aria-label="Close">×</button>
-    <div class="modal-num" id="modalNum">#0</div>
-    <div class="modal-name" id="modalName">Player</div>
-    <div class="modal-meta" id="modalMeta"></div>
+    <img class="modal-photo" id="modalPhoto" alt="" onerror="this.classList.add('broken')">
+    <div class="modal-head-content">
+      <div class="modal-num" id="modalNum">#0</div>
+      <div class="modal-name" id="modalName">Player</div>
+      <div class="modal-meta" id="modalMeta"></div>
+    </div>
   </div>
   <div class="modal-body">
     <div class="modal-section">
@@ -674,61 +740,63 @@ footer .accent { color: var(--red); }
 </div>
 
 <script>
+const HEAD = id => `https://a.espncdn.com/i/headshots/wnba/players/full/${id}.png`;
+
 const players = [
-  { num: 0, name: "Shakira Austin", pos: "F/C", posCat: "F", college: "Ole Miss", age: 25, ht: "6'5\"", tags: ["Comeback POY '25"], url: "https://www.wnba.com/player/shakira-austin", facts: [
+  { num: 0, name: "Shakira Austin", pos: "F/C", posCat: "F", college: "Ole Miss", age: 25, ht: "6'5\"", img: HEAD(4398911), tags: ["Comeback POY '25"], url: "https://www.wnba.com/player/shakira-austin", facts: [
     "2025 AP Comeback Player of the Year after injury wiped out most of 2024",
     "Career highs in points (12.7), assists, and blocks in 2025",
     "Team's highest-paid player; re-signed with Washington in April 2026",
     "Anchors the rim with 6.4 RPG and 1.1 BPG"
   ]},
-  { num: 1, name: "Sug Sutton", pos: "G", posCat: "G", college: "Texas", age: 27, ht: "5'8\"", tags: [], url: "https://www.wnba.com/player/sug-sutton", facts: [
+  { num: 1, name: "Sug Sutton", pos: "G", posCat: "G", college: "Texas", age: 27, ht: "5'8\"", img: HEAD(4068159), tags: [], url: "https://www.wnba.com/player/sug-sutton", facts: [
     "Veteran guard depth in the rotation",
     "All-Big 12 selection during her time at Texas"
   ]},
-  { num: 4, name: "Jacy Sheldon", pos: "G", posCat: "G", college: "Ohio State", age: 25, ht: "5'10\"", tags: ["Defense"], url: "https://www.wnba.com/player/jacy-sheldon", facts: [
+  { num: 4, name: "Jacy Sheldon", pos: "G", posCat: "G", college: "Ohio State", age: 25, ht: "5'10\"", img: HEAD(4432865), tags: ["Defense"], url: "https://www.wnba.com/player/jacy-sheldon", facts: [
     "Defensive-minded guard from Ohio State",
     "Two-time Big Ten Defensive Player of the Year in college"
   ]},
-  { num: 5, name: "Jade Melbourne", pos: "G", posCat: "G", college: "—", age: 23, ht: "5'10\"", tags: ["🇦🇺 Australia"], url: "https://www.wnba.com/player/jade-melbourne", facts: [
+  { num: 5, name: "Jade Melbourne", pos: "G", posCat: "G", college: "—", age: 23, ht: "5'10\"", img: HEAD(5017726), tags: ["🇦🇺 Australia"], url: "https://www.wnba.com/player/jade-melbourne", facts: [
     "One of two Australians on the roster",
     "Has represented the Opals (Australia's senior national team)"
   ]},
-  { num: 6, name: "Madison Scott", pos: "G/F", posCat: "F", college: "Ole Miss", age: 24, ht: "6'2\"", tags: [], url: "https://www.wnba.com/player/madison-scott", facts: [
+  { num: 6, name: "Madison Scott", pos: "G/F", posCat: "F", college: "Ole Miss", age: 24, ht: "6'2\"", img: HEAD(4433416), tags: [], url: "https://www.wnba.com/player/madison-scott", facts: [
     "Versatile wing out of Ole Miss",
     "Helped the Rebels reach back-to-back Sweet 16s"
   ]},
-  { num: 8, name: "Georgia Amoore", pos: "G", posCat: "G", college: "Kentucky", age: 24, ht: "5'6\"", tags: ["🇦🇺 Australia", "True rookie"], url: "https://www.wnba.com/player/georgia-amoore", facts: [
+  { num: 8, name: "Georgia Amoore", pos: "G", posCat: "G", college: "Kentucky", age: 24, ht: "5'6\"", img: HEAD(4704180), tags: ["🇦🇺 Australia", "True rookie"], url: "https://www.wnba.com/player/georgia-amoore", facts: [
     "5'6\" point guard from Ballarat, Victoria — drafted #6 overall in 2025",
     "Tore her ACL in the 2nd practice of training camp; missed all of 2025",
     "True rookie season is now — eligible for 2026 Rookie of the Year",
     "Led Virginia Tech to the 2023 Final Four; averaged 19.6/6.9 at Kentucky",
     "Recorded the first triple-double in Virginia Tech program history"
   ]},
-  { num: 21, name: "Emily Engstler", pos: "F", posCat: "F", college: "Louisville", age: 25, ht: "6'1\"", tags: [], url: "https://www.wnba.com/player/emily-engstler", facts: [
+  { num: 21, name: "Emily Engstler", pos: "F", posCat: "F", college: "Louisville", age: 25, ht: "6'1\"", img: HEAD(4398729), tags: [], url: "https://www.wnba.com/player/emily-engstler", facts: [
     "Versatile forward known for energy and playmaking from the wing",
     "Helped Louisville reach the Final Four in 2022"
   ]},
-  { num: 22, name: "Sonia Citron", pos: "G", posCat: "G", college: "Notre Dame", age: 22, ht: "6'1\"", tags: ["All-Star Rookie", "Led WNBA in 3PT%"], url: "https://www.wnba.com/player/sonia-citron", facts: [
+  { num: 22, name: "Sonia Citron", pos: "G", posCat: "G", college: "Notre Dame", age: 22, ht: "6'1\"", img: HEAD(4433524), tags: ["All-Star Rookie", "Led WNBA in 3PT%"], url: "https://www.wnba.com/player/sonia-citron", facts: [
     "2025 All-Star as a rookie — drafted 3rd overall in 2025",
     "Led the entire WNBA in 3PT% at 44.5% — highest ever by a rookie (min. 125 attempts)",
     "Averaged 14.9 PPG / 4.0 RPG / 2.4 APG with 47/44.5/87 splits",
     "Tied franchise single-season record with 81 made threes",
     "First rookie in Mystics history with a 25+ point, 10+ rebound game"
   ]},
-  { num: 31, name: "Stefanie Dolson", pos: "C", posCat: "C", college: "UConn", age: 34, ht: "6'5\"", tags: ["Olympic Gold"], url: "https://www.wnba.com/player/stefanie-dolson", facts: [
+  { num: 31, name: "Stefanie Dolson", pos: "C", posCat: "C", college: "UConn", age: 34, ht: "6'5\"", img: HEAD(2529183), tags: ["Olympic Gold"], url: "https://www.wnba.com/player/stefanie-dolson", facts: [
     "2x NCAA champion at UConn",
     "Olympic GOLD medalist in 3x3 basketball at Tokyo 2020",
     "Veteran presence and locker-room voice"
   ]},
-  { num: 32, name: "Alysha Clark", pos: "F", posCat: "F", college: "Middle Tennessee", age: 38, ht: "5'11\"", tags: ["3× Champion"], url: "https://www.wnba.com/player/alysha-clark", facts: [
+  { num: 32, name: "Alysha Clark", pos: "F", posCat: "F", college: "Middle Tennessee", age: 38, ht: "5'11\"", img: HEAD(924), tags: ["3× Champion"], url: "https://www.wnba.com/player/alysha-clark", facts: [
     "3x WNBA Champion (Seattle 2018, Seattle 2020, Las Vegas 2023)",
     "Elder of the squad and respected defensive specialist"
   ]},
-  { num: 33, name: "Lucy Olsen", pos: "G", posCat: "G", college: "Iowa", age: 22, ht: "5'10\"", tags: [], url: "https://www.wnba.com/player/lucy-olsen", facts: [
+  { num: 33, name: "Lucy Olsen", pos: "G", posCat: "G", college: "Iowa", age: 22, ht: "5'10\"", img: HEAD(4433815), tags: [], url: "https://www.wnba.com/player/lucy-olsen", facts: [
     "Caitlin Clark's successor at Iowa",
     "Transferred from Villanova for her senior year and averaged over 18 PPG"
   ]},
-  { num: 44, name: "Kiki Iriafen", pos: "F", posCat: "F", college: "USC", age: 22, ht: "6'3\"", tags: ["All-Star Rookie", "Double-Double Queen"], url: "https://www.wnba.com/player/kiki-iriafen", facts: [
+  { num: 44, name: "Kiki Iriafen", pos: "F", posCat: "F", college: "USC", age: 22, ht: "6'3\"", img: HEAD(4898384), tags: ["All-Star Rookie", "Double-Double Queen"], url: "https://www.wnba.com/player/kiki-iriafen", facts: [
     "2025 All-Star as a rookie — drafted 4th overall in 2025",
     "Set Mystics single-season record with 16 double-doubles",
     "13.3 PPG / 8.5 RPG — most rebounds by a rookie in franchise history",
@@ -746,6 +814,10 @@ const empty = document.getElementById('empty');
 let posFilter = 'ALL';
 let numFilter = '';
 
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
 function renderCards() {
   players.forEach((p, i) => {
     const card = document.createElement('div');
@@ -756,14 +828,15 @@ function renderCards() {
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.innerHTML = `
-      <div class="num-zone">
+      <div class="photo-zone">
+        <div class="pos-tag">${escapeHtml(p.pos)}</div>
+        <img class="photo" src="${p.img}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.classList.add('broken')">
         <div class="number"><span class="hash">#</span>${p.num}</div>
-        <div class="pos-tag">${p.pos}</div>
       </div>
       <div class="body">
-        <div class="name">${p.name}</div>
-        <div class="college">${p.college} · Age ${p.age} · ${p.ht}</div>
-        <div class="tag-row">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <div class="name">${escapeHtml(p.name)}</div>
+        <div class="college">${escapeHtml(p.college)} · Age ${p.age} · ${escapeHtml(p.ht)}</div>
+        <div class="tag-row">${p.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
         <div class="more"><span>View profile</span></div>
       </div>
     `;
@@ -837,7 +910,6 @@ document.querySelectorAll('.pos-pill').forEach(btn => {
   });
 });
 
-// Modal
 const modal = document.getElementById('modal');
 const backdrop = document.getElementById('backdrop');
 
@@ -845,7 +917,11 @@ function openModal(p) {
   document.getElementById('modalNum').textContent = '#' + p.num;
   document.getElementById('modalName').textContent = p.name;
   document.getElementById('modalMeta').textContent = `${p.pos} · ${p.college} · Age ${p.age} · ${p.ht}`;
-  document.getElementById('modalFacts').innerHTML = p.facts.map(f => `<li>${f}</li>`).join('');
+  const photo = document.getElementById('modalPhoto');
+  photo.classList.remove('broken');
+  photo.src = p.img;
+  photo.alt = p.name;
+  document.getElementById('modalFacts').innerHTML = p.facts.map(f => `<li>${escapeHtml(f)}</li>`).join('');
   document.getElementById('modalLink').href = p.url;
   modal.classList.add('open');
   backdrop.classList.add('open');
