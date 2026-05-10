@@ -16,12 +16,9 @@
   --red-glow: rgba(224, 58, 63, 0.4);
   --cream: #F5F1E8;
   --grey: #8B96A8;
-  --gold: #D4AF37;
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--navy);
   color: var(--cream);
@@ -30,338 +27,191 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
-
 body::before {
   content: '';
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0;
   background:
-    radial-gradient(ellipse at top right, rgba(224, 58, 63, 0.10), transparent 55%),
-    radial-gradient(ellipse at bottom left, rgba(0, 43, 92, 0.5), transparent 65%);
-  pointer-events: none;
-  z-index: 0;
+    radial-gradient(ellipse at top right, rgba(224,58,63,0.10), transparent 55%),
+    radial-gradient(ellipse at bottom left, rgba(0,43,92,0.5), transparent 65%);
+  pointer-events: none; z-index: 0;
 }
-
 body::after {
   content: '';
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
   opacity: 0.04;
-  pointer-events: none;
-  z-index: 0;
+  pointer-events: none; z-index: 0;
   mix-blend-mode: overlay;
 }
+main { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; }
 
-main {
-  position: relative;
-  z-index: 1;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 1.5rem 1.5rem 4rem;
-}
-
-/* === STATUS BAR === */
 .statusbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  color: var(--grey);
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid rgba(245, 241, 232, 0.1);
-  text-transform: uppercase;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.18em;
+  color: var(--grey); padding-bottom: 1rem; margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(245,241,232,0.1); text-transform: uppercase;
 }
 .statusbar .live { color: var(--red); display: inline-flex; align-items: center; gap: 0.5rem; }
 .statusbar .live::before {
-  content: '';
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--red);
-  box-shadow: 0 0 8px var(--red);
+  content: ''; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--red); box-shadow: 0 0 8px var(--red);
   animation: pulse 2s ease-in-out infinite;
 }
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
-}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.8);} }
 
-/* === HERO === */
 .hero { padding: 2.5rem 0 4rem; position: relative; }
 .hero h1 {
-  font-family: 'Big Shoulders Display', sans-serif;
-  font-weight: 900;
-  font-size: clamp(4rem, 14vw, 11rem);
-  line-height: 0.85;
-  letter-spacing: -0.025em;
-  text-transform: uppercase;
+  font-family: 'Big Shoulders Display', sans-serif; font-weight: 900;
+  font-size: clamp(4rem, 14vw, 11rem); line-height: 0.85;
+  letter-spacing: -0.025em; text-transform: uppercase;
 }
 .hero h1 .accent { color: var(--red); font-style: italic; font-weight: 800; }
 .hero .lede {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
-  color: var(--cream);
-  max-width: 42rem;
-  margin-top: 1.75rem;
-  line-height: 1.55;
-  opacity: 0.88;
+  font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem); color: var(--cream);
+  max-width: 42rem; margin-top: 1.75rem; line-height: 1.55; opacity: 0.88;
 }
 .hero .lede em { font-style: normal; font-weight: 600; color: var(--red); }
-
-.hero-stats {
-  display: flex;
-  gap: clamp(1.5rem, 4vw, 3.5rem);
-  margin-top: 3rem;
-  flex-wrap: wrap;
-}
+.hero-stats { display: flex; gap: clamp(1.5rem, 4vw, 3.5rem); margin-top: 3rem; flex-wrap: wrap; }
 .hero-stat .num {
-  font-family: 'Big Shoulders Display', sans-serif;
-  font-weight: 800;
-  font-size: clamp(2.25rem, 4vw, 3.25rem);
-  line-height: 1;
-  color: var(--cream);
-  letter-spacing: -0.02em;
+  font-family: 'Big Shoulders Display', sans-serif; font-weight: 800;
+  font-size: clamp(2.25rem, 4vw, 3.25rem); line-height: 1;
+  color: var(--cream); letter-spacing: -0.02em;
 }
 .hero-stat .label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--grey);
-  margin-top: 0.5rem;
+  font-family: 'DM Mono', monospace; font-size: 0.7rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--grey); margin-top: 0.5rem;
 }
 
-/* === SECTION HEAD === */
 .section-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  margin: 4rem 0 1.75rem;
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem; margin: 4rem 0 1.75rem;
 }
 .section-head h2 {
-  font-family: 'Big Shoulders Display', sans-serif;
-  font-weight: 900;
-  font-size: clamp(2rem, 5vw, 3.25rem);
-  text-transform: uppercase;
-  letter-spacing: -0.015em;
-  line-height: 1;
+  font-family: 'Big Shoulders Display', sans-serif; font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.25rem); text-transform: uppercase;
+  letter-spacing: -0.015em; line-height: 1;
 }
 .section-head h2 .accent { color: var(--red); font-style: italic; font-weight: 800; }
 .section-head .index {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  color: var(--grey);
-  text-transform: uppercase;
-  white-space: nowrap;
+  font-family: 'DM Mono', monospace; font-size: 0.7rem;
+  letter-spacing: 0.18em; color: var(--grey);
+  text-transform: uppercase; white-space: nowrap;
 }
 
-/* === SEARCH === */
 .search-shell {
   background: linear-gradient(135deg, var(--navy-2) 0%, var(--navy-3) 100%);
-  border: 1px solid rgba(245, 241, 232, 0.08);
-  padding: 2.5rem;
-  position: relative;
-  overflow: hidden;
+  border: 1px solid rgba(245,241,232,0.08);
+  padding: 2.5rem; position: relative; overflow: hidden;
 }
 .search-shell::before {
-  content: '';
-  position: absolute;
-  top: -50px; right: -50px;
+  content: ''; position: absolute; top: -50px; right: -50px;
   width: 350px; height: 350px;
   background: radial-gradient(circle, var(--red-glow), transparent 70%);
-  filter: blur(60px);
-  pointer-events: none;
+  filter: blur(60px); pointer-events: none;
 }
 .search-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--grey);
-  margin-bottom: 0.75rem;
-  position: relative;
+  font-family: 'DM Mono', monospace; font-size: 0.7rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--grey); margin-bottom: 0.75rem; position: relative;
 }
 .search-input {
-  display: flex;
-  align-items: flex-end;
-  gap: 1rem;
-  border-bottom: 2px solid var(--cream);
-  padding: 0.5rem 0;
-  position: relative;
-  transition: border-color 0.2s;
+  display: flex; align-items: flex-end; gap: 1rem;
+  border-bottom: 2px solid var(--cream); padding: 0.5rem 0;
+  position: relative; transition: border-color 0.2s;
 }
 .search-input:focus-within { border-color: var(--red); }
 .search-input input {
-  background: transparent;
-  border: none;
-  outline: none;
+  background: transparent; border: none; outline: none;
   color: var(--cream);
   font-family: 'Big Shoulders Display', sans-serif;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-weight: 700;
-  letter-spacing: 0;
-  width: 100%;
-  text-transform: uppercase;
-  line-height: 1.1;
+  font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 700;
+  width: 100%; text-transform: uppercase; line-height: 1.1;
 }
-.search-input input::placeholder { color: rgba(245, 241, 232, 0.2); }
+.search-input input::placeholder { color: rgba(245,241,232,0.2); }
 .search-clear {
-  background: var(--red);
-  color: var(--cream);
-  border: none;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 0.55rem 0.95rem;
-  cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
+  background: var(--red); color: var(--cream); border: none;
+  font-family: 'DM Mono', monospace; font-size: 0.65rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 0.55rem 0.95rem; cursor: pointer;
+  opacity: 0; pointer-events: none;
   transition: opacity 0.2s, transform 0.2s;
-  margin-bottom: 0.5rem;
-  white-space: nowrap;
+  margin-bottom: 0.5rem; white-space: nowrap;
 }
 .search-clear.show { opacity: 1; pointer-events: auto; }
 .search-clear:hover { transform: translateY(-2px); }
-
 .search-hint {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-size: 0.85rem;
-  color: var(--grey);
-  margin-top: 0.6rem;
-  position: relative;
+  font-family: 'Fraunces', serif; font-style: italic;
+  font-size: 0.85rem; color: var(--grey);
+  margin-top: 0.6rem; position: relative;
 }
 
-.numbers-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 2rem;
-  position: relative;
-}
+.numbers-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; position: relative; }
 .num-pill {
-  font-family: 'Big Shoulders Display', sans-serif;
-  font-weight: 700;
+  font-family: 'Big Shoulders Display', sans-serif; font-weight: 700;
   font-size: 1.15rem;
-  background: rgba(245, 241, 232, 0.06);
-  color: var(--cream);
-  border: 1px solid rgba(245, 241, 232, 0.15);
-  padding: 0.5rem 0.85rem;
-  cursor: pointer;
-  min-width: 3rem;
-  text-align: center;
-  transition: all 0.2s;
-  font-feature-settings: "tnum";
+  background: rgba(245,241,232,0.06); color: var(--cream);
+  border: 1px solid rgba(245,241,232,0.15);
+  padding: 0.5rem 0.85rem; cursor: pointer;
+  min-width: 3rem; text-align: center;
+  transition: all 0.2s; font-feature-settings: "tnum";
 }
-.num-pill:hover {
-  background: rgba(224, 58, 63, 0.85);
-  border-color: var(--red);
-  transform: translateY(-2px);
-}
-.num-pill.active {
-  background: var(--red);
-  border-color: var(--red);
-  box-shadow: 0 0 24px var(--red-glow);
-  color: var(--cream);
-}
+.num-pill:hover { background: rgba(224,58,63,0.85); border-color: var(--red); transform: translateY(-2px); }
+.num-pill.active { background: var(--red); border-color: var(--red); box-shadow: 0 0 24px var(--red-glow); }
 
-.position-row {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  position: relative;
-  flex-wrap: wrap;
-}
+.position-row { display: flex; gap: 0.5rem; margin-top: 1rem; position: relative; flex-wrap: wrap; }
 .pos-pill {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  background: transparent;
-  color: var(--grey);
-  border: 1px solid rgba(245, 241, 232, 0.18);
-  padding: 0.55rem 0.95rem;
-  cursor: pointer;
-  transition: all 0.2s;
+  font-family: 'DM Mono', monospace; font-size: 0.7rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  background: transparent; color: var(--grey);
+  border: 1px solid rgba(245,241,232,0.18);
+  padding: 0.55rem 0.95rem; cursor: pointer; transition: all 0.2s;
 }
 .pos-pill:hover { color: var(--cream); border-color: var(--cream); }
 .pos-pill.active { background: var(--cream); color: var(--navy); border-color: var(--cream); }
 
-/* === GRID === */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 1rem;
-}
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; }
 
 .card {
   background: linear-gradient(165deg, var(--navy-2) 0%, var(--navy-3) 100%);
-  border: 1px solid rgba(245, 241, 232, 0.08);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
+  border: 1px solid rgba(245,241,232,0.08);
+  cursor: pointer; position: relative; overflow: hidden;
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-  opacity: 0;
-  animation: cardIn 0.55s ease forwards;
+  opacity: 0; animation: cardIn 0.55s ease forwards;
 }
-@keyframes cardIn {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes cardIn { from{opacity:0;transform:translateY(24px);} to{opacity:1;transform:translateY(0);} }
 .card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--red);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-  z-index: 5;
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: var(--red);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s ease; z-index: 5;
 }
 .card:hover {
   transform: translateY(-6px);
   box-shadow: 0 22px 44px -12px rgba(0,0,0,0.6), 0 0 30px var(--red-glow);
-  border-color: rgba(224, 58, 63, 0.5);
+  border-color: rgba(224,58,63,0.5);
 }
 .card:hover::before { transform: scaleX(1); }
 .card.hidden { display: none; }
 
-/* PHOTO ZONE */
 .photo-zone {
-  position: relative;
-  height: 260px;
-  overflow: hidden;
+  position: relative; height: 260px; overflow: hidden;
   background:
     radial-gradient(circle at 70% 30%, rgba(224,58,63,0.18), transparent 65%),
     linear-gradient(135deg, var(--navy-2) 0%, var(--navy-3) 100%);
 }
 .photo-zone::after {
-  content: '';
-  position: absolute;
-  inset: 0;
+  content: ''; position: absolute; inset: 0;
   background-image:
     linear-gradient(rgba(245,241,232,0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(245,241,232,0.04) 1px, transparent 1px);
-  background-size: 24px 24px;
-  pointer-events: none;
-  z-index: 0;
+  background-size: 24px 24px; pointer-events: none; z-index: 0;
 }
 .photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: right bottom;
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain; object-position: right bottom;
   z-index: 1;
   filter: drop-shadow(-4px 8px 16px rgba(0,0,0,0.5));
   transition: transform 0.5s ease;
@@ -370,315 +220,184 @@ main {
 .photo.broken { display: none; }
 
 .card .number {
-  position: absolute;
-  bottom: -14px;
-  left: 1rem;
-  z-index: 2;
+  position: absolute; bottom: -14px; left: 1rem; z-index: 2;
   font-family: 'Big Shoulders Display', sans-serif;
-  font-weight: 900;
-  font-size: 7rem;
-  line-height: 0.85;
-  letter-spacing: -0.04em;
-  color: var(--cream);
+  font-weight: 900; font-size: 7rem; line-height: 0.85;
+  letter-spacing: -0.04em; color: var(--cream);
   font-feature-settings: "tnum";
   text-shadow: 2px 2px 0 rgba(0,0,0,0.25);
   pointer-events: none;
 }
-.card .number.tbd {
-  font-size: 3rem;
-  bottom: 1rem;
-  color: rgba(245, 241, 232, 0.55);
-  font-style: italic;
-  font-weight: 700;
-}
 .card .number .hash {
-  color: var(--red);
-  font-size: 2rem;
-  vertical-align: super;
-  line-height: 1;
-  font-weight: 700;
+  color: var(--red); font-size: 2rem;
+  vertical-align: super; line-height: 1; font-weight: 700;
   text-shadow: none;
 }
 .card .pos-tag {
-  position: absolute;
-  top: 0.85rem;
-  right: 0.85rem;
-  z-index: 3;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--cream);
-  background: rgba(0, 20, 40, 0.7);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(245, 241, 232, 0.2);
-  padding: 0.3rem 0.55rem;
-  white-space: nowrap;
+  position: absolute; top: 0.85rem; right: 0.85rem; z-index: 3;
+  font-family: 'DM Mono', monospace; font-size: 0.65rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--cream); background: rgba(0,20,40,0.7);
+  backdrop-filter: blur(4px); border: 1px solid rgba(245,241,232,0.2);
+  padding: 0.3rem 0.55rem; white-space: nowrap;
 }
 .card .rookie-badge {
-  position: absolute;
-  top: 0.85rem;
-  left: 0.85rem;
-  z-index: 3;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--cream);
-  background: var(--red);
-  padding: 0.3rem 0.55rem;
-  white-space: nowrap;
-  font-weight: 500;
+  position: absolute; top: 0.85rem; left: 0.85rem; z-index: 3;
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--cream); background: var(--red);
+  padding: 0.3rem 0.55rem; white-space: nowrap; font-weight: 500;
 }
 
 .card .body {
-  padding: 1.25rem 1.5rem 1.5rem;
-  position: relative;
-  z-index: 2;
+  padding: 1.25rem 1.5rem 1.5rem; position: relative; z-index: 2;
   background: linear-gradient(180deg, rgba(0,20,40,0) 0%, var(--navy) 30%);
 }
 .card .name {
   font-family: 'Big Shoulders Display', sans-serif;
-  font-weight: 800;
-  font-size: 1.6rem;
-  line-height: 1.1;
-  text-transform: uppercase;
-  letter-spacing: -0.005em;
-  margin-bottom: 0.3rem;
+  font-weight: 800; font-size: 1.6rem; line-height: 1.1;
+  text-transform: uppercase; letter-spacing: -0.005em; margin-bottom: 0.3rem;
 }
 .card .college {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-size: 0.92rem;
-  color: var(--grey);
-  line-height: 1.4;
+  font-family: 'Fraunces', serif; font-style: italic;
+  font-size: 0.92rem; color: var(--grey); line-height: 1.4;
 }
 .card .tag-row {
-  display: flex;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-  margin-top: 1rem;
-  min-height: 1.5rem;
+  display: flex; gap: 0.4rem; flex-wrap: wrap;
+  margin-top: 1rem; min-height: 1.5rem;
 }
 .card .tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--cream);
-  background: rgba(224, 58, 63, 0.18);
-  border: 1px solid rgba(224, 58, 63, 0.45);
-  padding: 0.22rem 0.5rem;
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--cream); background: rgba(224,58,63,0.18);
+  border: 1px solid rgba(224,58,63,0.45); padding: 0.22rem 0.5rem;
 }
 .card .more {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  color: var(--cream);
-  text-transform: uppercase;
-  margin-top: 1.25rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(245, 241, 232, 0.1);
-  display: flex;
-  justify-content: space-between;
-  opacity: 0.7;
-  transition: opacity 0.3s;
+  font-family: 'DM Mono', monospace; font-size: 0.65rem;
+  letter-spacing: 0.18em; color: var(--cream);
+  text-transform: uppercase; margin-top: 1.25rem;
+  padding-top: 1rem; border-top: 1px solid rgba(245,241,232,0.1);
+  display: flex; justify-content: space-between;
+  opacity: 0.7; transition: opacity 0.3s;
 }
 .card .more::after { content: '→'; transition: transform 0.3s; }
 .card:hover .more { opacity: 1; }
 .card:hover .more::after { transform: translateX(4px); }
 
-/* === EMPTY === */
 .empty {
-  text-align: center;
-  padding: 4rem 2rem;
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  color: var(--grey);
-  font-size: 1.1rem;
-  display: none;
+  text-align: center; padding: 4rem 2rem;
+  font-family: 'Fraunces', serif; font-style: italic;
+  color: var(--grey); font-size: 1.1rem; display: none;
 }
 .empty.show { display: block; }
 
-/* === MODAL === */
 .modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 5, 15, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  z-index: 50;
-  opacity: 0;
-  pointer-events: none;
+  position: fixed; inset: 0;
+  background: rgba(0,5,15,0.85);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  z-index: 50; opacity: 0; pointer-events: none;
   transition: opacity 0.3s;
 }
 .modal-backdrop.open { opacity: 1; pointer-events: auto; }
-
 .modal {
-  position: fixed;
-  top: 50%; left: 50%;
+  position: fixed; top: 50%; left: 50%;
   transform: translate(-50%, -45%);
-  max-width: 760px;
-  width: calc(100% - 3rem);
-  max-height: 88vh;
-  background: var(--navy);
-  border: 1px solid rgba(224, 58, 63, 0.4);
-  z-index: 51;
-  opacity: 0;
-  pointer-events: none;
+  max-width: 760px; width: calc(100% - 3rem); max-height: 88vh;
+  background: var(--navy); border: 1px solid rgba(224,58,63,0.4);
+  z-index: 51; opacity: 0; pointer-events: none;
   transition: opacity 0.3s, transform 0.3s;
-  overflow-y: auto;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,0.6);
 }
 .modal.open { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%); }
-
 .modal-head {
   background: linear-gradient(135deg, var(--navy-2), var(--navy-3));
   padding: 2rem 2.5rem 1.5rem;
   border-bottom: 2px solid var(--red);
-  position: relative;
-  overflow: hidden;
-  min-height: 240px;
+  position: relative; overflow: hidden; min-height: 240px;
 }
 .modal-head::before {
-  content: '';
-  position: absolute;
-  top: -100px; right: -100px;
+  content: ''; position: absolute; top: -100px; right: -100px;
   width: 350px; height: 350px;
-  background: radial-gradient(circle, rgba(224, 58, 63, 0.3), transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
+  background: radial-gradient(circle, rgba(224,58,63,0.3), transparent 70%);
+  filter: blur(40px); pointer-events: none;
 }
 .modal-photo {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  height: 100%;
-  width: 50%;
-  object-fit: contain;
-  object-position: right bottom;
-  z-index: 1;
-  filter: drop-shadow(-6px 0 24px rgba(0,0,0,0.5));
+  position: absolute; bottom: 0; right: 0;
+  height: 100%; width: 50%;
+  object-fit: contain; object-position: right bottom;
+  z-index: 1; filter: drop-shadow(-6px 0 24px rgba(0,0,0,0.5));
 }
 .modal-photo.broken { display: none; }
-.modal-head-content {
-  position: relative;
-  z-index: 2;
-  max-width: 60%;
-}
+.modal-head-content { position: relative; z-index: 2; max-width: 60%; }
 .modal-close {
-  position: absolute;
-  top: 1rem; right: 1rem;
-  background: rgba(224, 58, 63, 0.25);
-  border: 1px solid var(--red);
-  color: var(--cream);
-  width: 2.5rem; height: 2.5rem;
-  cursor: pointer;
-  font-size: 1.2rem;
-  font-family: 'DM Mono', monospace;
-  z-index: 10;
+  position: absolute; top: 1rem; right: 1rem;
+  background: rgba(224,58,63,0.25); border: 1px solid var(--red);
+  color: var(--cream); width: 2.5rem; height: 2.5rem;
+  cursor: pointer; font-size: 1.2rem;
+  font-family: 'DM Mono', monospace; z-index: 10;
   transition: background 0.2s, transform 0.2s;
   backdrop-filter: blur(4px);
 }
 .modal-close:hover { background: var(--red); transform: rotate(90deg); }
-
 .modal-num {
   font-family: 'Big Shoulders Display', sans-serif;
-  font-weight: 900;
-  font-size: 6rem;
-  line-height: 0.85;
-  color: var(--red);
-  letter-spacing: -0.04em;
+  font-weight: 900; font-size: 6rem; line-height: 0.85;
+  color: var(--red); letter-spacing: -0.04em;
   font-feature-settings: "tnum";
 }
-.modal-num.tbd { font-size: 2.5rem; opacity: 0.6; font-style: italic; }
 .modal-name {
   font-family: 'Big Shoulders Display', sans-serif;
-  font-weight: 900;
-  font-size: 2.25rem;
-  text-transform: uppercase;
-  margin-top: 0.5rem;
-  letter-spacing: -0.01em;
-  line-height: 1;
+  font-weight: 900; font-size: 2.25rem;
+  text-transform: uppercase; margin-top: 0.5rem;
+  letter-spacing: -0.01em; line-height: 1;
 }
 .modal-meta {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--grey);
-  margin-top: 0.6rem;
+  font-family: 'DM Mono', monospace; font-size: 0.72rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--grey); margin-top: 0.6rem;
 }
-
 .modal-body { padding: 2rem 2.5rem 2.5rem; }
 .modal-section { margin-bottom: 1.75rem; }
 .modal-section-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 0.85rem;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  font-family: 'DM Mono', monospace; font-size: 0.65rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 0.85rem;
+  display: flex; align-items: center; gap: 0.6rem;
 }
 .modal-section-label::before { content: ''; width: 14px; height: 1px; background: var(--red); }
 
 .fact-list { list-style: none; padding: 0; }
 .fact-list li {
-  font-family: 'Fraunces', serif;
-  font-size: 1rem;
-  line-height: 1.55;
+  font-family: 'Fraunces', serif; font-size: 1rem; line-height: 1.55;
   padding: 0.65rem 0 0.65rem 1.5rem;
   position: relative;
-  border-bottom: 1px solid rgba(245, 241, 232, 0.08);
+  border-bottom: 1px solid rgba(245,241,232,0.08);
 }
 .fact-list li:last-child { border-bottom: none; }
 .fact-list li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  top: 0.65rem;
-  color: var(--red);
-  font-family: 'DM Mono', monospace;
-  font-weight: 500;
+  content: '→'; position: absolute; left: 0; top: 0.65rem;
+  color: var(--red); font-family: 'DM Mono', monospace; font-weight: 500;
 }
-
 .modal-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--cream);
-  background: var(--red);
-  padding: 0.85rem 1.35rem;
-  text-decoration: none;
-  margin-top: 0.5rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'DM Mono', monospace; font-size: 0.75rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--cream); background: var(--red);
+  padding: 0.85rem 1.35rem; text-decoration: none;
+  margin-top: 0.5rem; transition: transform 0.2s, box-shadow 0.2s;
 }
 .modal-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--red-glow); }
 
-/* === FOOTER === */
 footer {
-  margin-top: 6rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(245, 241, 232, 0.1);
-  text-align: center;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--grey);
-  line-height: 1.8;
+  margin-top: 6rem; padding-top: 2rem;
+  border-top: 1px solid rgba(245,241,232,0.1);
+  text-align: center; font-family: 'DM Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--grey); line-height: 1.8;
 }
 footer .accent { color: var(--red); }
 footer .credit { display: block; margin-top: 0.5rem; font-size: 0.6rem; opacity: 0.6; text-transform: none; letter-spacing: 0.05em; }
 
-/* === MOBILE === */
 @media (max-width: 600px) {
   main { padding: 1rem 1rem 3rem; }
   .search-shell { padding: 1.5rem; }
@@ -702,11 +421,11 @@ footer .credit { display: block; margin-top: 0.5rem; font-size: 0.6rem; opacity:
 
   <section class="hero">
     <h1>Washington<br><span class="accent">Mystics</span></h1>
-    <p class="lede">A radically retooled, youth-driven roster — six rookies headlined by <em>Lauren Betts</em>, returning All-Stars <em>Sonia Citron</em> and <em>Kiki Iriafen</em>, anchor <em>Shakira Austin</em>, and finally healthy point guard <em>Georgia Amoore</em>. <strong style="color: var(--red); font-weight: 600">12 of 14 are 22-or-younger or rookies.</strong></p>
+    <p class="lede">A radically retooled, youth-driven roster — eight 2026 rookies headlined by <em>Lauren Betts</em>, returning All-Stars <em>Sonia Citron</em> and <em>Kiki Iriafen</em>, anchor <em>Shakira Austin</em>, and finally healthy point guard <em>Georgia Amoore</em>.</p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="num">1</div><div class="label">WNBA Title · 2019</div></div>
-      <div class="hero-stat"><div class="num">14</div><div class="label">Active Roster</div></div>
-      <div class="hero-stat"><div class="num">6</div><div class="label">2026 Rookies</div></div>
+      <div class="hero-stat"><div class="num">16</div><div class="label">Roster Size</div></div>
+      <div class="hero-stat"><div class="num">8</div><div class="label">Rookies</div></div>
       <div class="hero-stat"><div class="num">A+</div><div class="label">ESPN Draft Grade</div></div>
     </div>
   </section>
@@ -719,10 +438,10 @@ footer .credit { display: block; margin-top: 0.5rem; font-size: 0.6rem; opacity:
   <div class="search-shell">
     <div class="search-label">Type a jersey number or name</div>
     <div class="search-input">
-      <input type="text" id="searchInput" placeholder="22 or BETTS" maxlength="20" autocomplete="off" aria-label="Filter by jersey number or name">
+      <input type="text" id="searchInput" placeholder="51 or BETTS" maxlength="20" autocomplete="off" aria-label="Filter by jersey number or name">
       <button class="search-clear" id="clearBtn" aria-label="Clear search">Clear</button>
     </div>
-    <div class="search-hint">New rookies haven't been assigned jersey numbers yet — search by name to find them.</div>
+    <div class="search-hint">Tap a number below to jump to that player.</div>
     <div class="numbers-row" id="numRow"></div>
     <div class="position-row">
       <button class="pos-pill active" data-pos="ALL">All Positions</button>
@@ -735,7 +454,7 @@ footer .credit { display: block; margin-top: 0.5rem; font-size: 0.6rem; opacity:
 
   <div class="section-head">
     <h2>The <span class="accent">roster</span></h2>
-    <span class="index">— 02 / 14 Players</span>
+    <span class="index">— 02 / 16 Players</span>
   </div>
 
   <div class="grid" id="grid"></div>
@@ -743,7 +462,7 @@ footer .credit { display: block; margin-top: 0.5rem; font-size: 0.6rem; opacity:
 
   <footer>
     Cheat sheet · Go Mystics <span class="accent">★</span> #TogetherDC
-    <span class="credit">2026 opening-night roster via ESPN · Player photos courtesy ESPN · Jersey numbers per CBS Sports (TBD for rookies)</span>
+    <span class="credit">Roster, jersey numbers & headshots: official Mystics roster page (mystics.wnba.com/roster)</span>
   </footer>
 </main>
 
@@ -768,45 +487,115 @@ footer .credit { display: block; margin-top: 0.5rem; font-size: 0.6rem; opacity:
 </div>
 
 <script>
-const HEAD = id => `https://a.espncdn.com/i/headshots/wnba/players/full/${id}.png`;
+// All headshots and jersey numbers verified from mystics.wnba.com/roster (the team's official page).
+// Photo URL pattern: https://cdn.wnba.com/headshots/wnba/latest/260x190/{playerId}.png
+const HEAD = id => `https://cdn.wnba.com/headshots/wnba/latest/260x190/${id}.png`;
 
-// 2026 OPENING-NIGHT ROSTER (14 players, including 2 developmental marked ^)
-// Order: returning veterans first, then 2026 rookie class, then new vets
 const players = [
-  // === RETURNING ===
-  { num: 0, name: "Shakira Austin", pos: "F/C", posCat: "F", college: "Ole Miss", age: 25, ht: "6'5\"", img: HEAD(4398911), tags: ["Comeback POY '25"], rookie: false, url: "https://www.wnba.com/player/shakira-austin", facts: [
+  // Sorted by jersey number
+  { num: 0, name: "Shakira Austin", pos: "C", posCat: "C", college: "Ole Miss", age: 25, ht: "6'5\"", country: "USA", exp: "4 yrs", rookie: false, img: HEAD(1631022),
+    tags: ["Comeback POY '25"], url: "https://www.wnba.com/player/1631022", facts: [
     "2025 AP Comeback Player of the Year after injury wiped out most of 2024",
-    "Re-signed with the Mystics on a 3-year, $3.57M deal in April 2026 after Washington matched a Toronto Tempo offer sheet",
-    "Career highs in 2025 in points (12.7), assists, and blocks",
-    "Anchors the rim with 6.4 RPG and 1.1 BPG; team's highest-paid player"
+    "Re-signed with Washington on a 3-year, $3.57M deal in April 2026 after the Mystics matched a Toronto Tempo offer sheet",
+    "Career highs in 2025: 12.7 PPG, 6.4 RPG, 1.8 APG",
+    "Anchors the rim with rim-protection and post scoring; team's highest-paid player"
   ]},
-  { num: 22, name: "Sonia Citron", pos: "G", posCat: "G", college: "Notre Dame", age: 22, ht: "6'1\"", img: HEAD(4433524), tags: ["All-Star Rookie", "Led WNBA in 3PT%"], rookie: false, url: "https://www.wnba.com/player/sonia-citron", facts: [
-    "2025 All-Star as a rookie — drafted 3rd overall in 2025",
-    "Led the entire WNBA in 3PT% at 44.5% — highest ever by a rookie (min. 125 attempts)",
-    "Averaged 14.9 PPG / 4.0 RPG / 2.4 APG with 47/44.5/87 splits",
-    "Tied franchise single-season record with 81 made threes",
-    "First rookie in Mystics history with a 25+ point, 10+ rebound game"
+  { num: 2, name: "Nyla Harris", pos: "F", posCat: "F", college: "North Carolina", age: 22, ht: "6'2\"", country: "—", exp: "R", rookie: true, img: HEAD(1643480),
+    tags: ["Rookie"], url: "https://www.wnba.com/player/1643480", facts: [
+    "Undrafted rookie forward out of North Carolina",
+    "Made the opening-night roster on the strength of training-camp performance"
   ]},
-  { num: 44, name: "Kiki Iriafen", pos: "F", posCat: "F", college: "USC", age: 23, ht: "6'3\"", img: HEAD(4898384), tags: ["All-Star Rookie", "Double-Double Queen"], rookie: false, url: "https://www.wnba.com/player/kiki-iriafen", facts: [
-    "2025 All-Star as a rookie — drafted 4th overall in 2025",
-    "Set Mystics single-season record with 16 double-doubles",
-    "13.3 PPG / 8.5 RPG — most rebounds by a rookie in franchise history",
-    "First Kia Rookie of the Month of 2025 (13.9/10.1 in May)",
-    "She and Citron are the first rookie All-Star teammates since 1999"
+  { num: 3, name: "Rori Harmon", pos: "G", posCat: "G", college: "Texas", age: 22, ht: "5'6\"", country: "—", exp: "R", rookie: true, img: HEAD(1643450),
+    tags: ["#34 Pick", "Final Four"], url: "https://www.wnba.com/player/1643450", facts: [
+    "Drafted #34 overall in the 2026 WNBA Draft",
+    "Heart of the Texas teams that reached the Final Four in back-to-back seasons",
+    "5'6\" point guard from Houston; elite defender and floor leader",
+    "Played double-digit minutes in both Mystics preseason games"
   ]},
-  { num: 8, name: "Georgia Amoore", pos: "G", posCat: "G", college: "Kentucky", age: 25, ht: "5'6\"", img: HEAD(4704180), tags: ["🇦🇺 Australia", "True Rookie"], rookie: false, url: "https://www.wnba.com/player/georgia-amoore", facts: [
+  { num: 4, name: "Alex Wilson", pos: "G", posCat: "G", college: "—", age: 32, ht: "5'9\"", country: "Australia", exp: "R", rookie: true, img: HEAD(1642775),
+    tags: ["🇦🇺 WNBL", "Oldest on roster"], url: "https://www.wnba.com/player/1642775", facts: [
+    "Oldest player on the Mystics roster at 32",
+    "Was on the Australian WNBL's first team in 2025 and 2026",
+    "Brings veteran international experience despite being a WNBA rookie"
+  ]},
+  { num: 5, name: "Darianna Littlepage-Buggs", pos: "G/F", posCat: "F", college: "Baylor", age: 22, ht: "6'1\"", country: "—", exp: "R", rookie: true, img: HEAD(1643440),
+    tags: ["#30 Pick"], url: "https://www.wnba.com/player/1643440", facts: [
+    "Drafted #30 overall in the 2026 WNBA Draft",
+    "Exceptional rebounder out of Baylor",
+    "Designated as a developmental player — eligible for limited active games"
+  ]},
+  { num: 7, name: "Christeen Iwuala", pos: "F", posCat: "F", college: "Ole Miss", age: 23, ht: "6'3\"", country: "—", exp: "R", rookie: true, img: HEAD(1643472),
+    tags: ["Rookie"], url: "https://www.wnba.com/player/1643472", facts: [
+    "Rookie forward out of Ole Miss",
+    "6'3\" with positional length on the wing"
+  ]},
+  { num: 8, name: "Georgia Amoore", pos: "G", posCat: "G", college: "Kentucky", age: 24, ht: "5'6\"", country: "Australia", exp: "R", rookie: true, img: HEAD(1642781),
+    tags: ["🇦🇺 Australia", "True rookie"], url: "https://www.wnba.com/player/1642781", facts: [
     "5'6\" point guard from Ballarat, Victoria — drafted #6 overall in 2025",
     "Tore her ACL in the 2nd practice of training camp; missed all of 2025",
     "True rookie season is now — eligible for 2026 Rookie of the Year",
     "Led Virginia Tech to the 2023 Final Four; averaged 19.6 / 6.9 at Kentucky",
     "Recorded the first triple-double in Virginia Tech program history"
   ]},
-  { num: 33, name: "Lucy Olsen", pos: "G", posCat: "G", college: "Iowa", age: 22, ht: "5'10\"", img: HEAD(4433815), tags: [], rookie: false, url: "https://www.wnba.com/player/lucy-olsen", facts: [
-    "Caitlin Clark's successor at Iowa",
-    "Transferred from Villanova for her senior year and averaged over 18 PPG"
+  { num: 12, name: "Michaela Onyenwere", pos: "F", posCat: "F", college: "UCLA", age: 26, ht: "6'0\"", country: "USA", exp: "5 yrs", rookie: false, img: HEAD(1630446),
+    tags: ["2021 ROY", "Veteran"], url: "https://www.wnba.com/player/1630446", facts: [
+    "2021 WNBA Rookie of the Year (with the New York Liberty)",
+    "Former UCLA Bruin — joined the Mystics in free agency just ahead of the 2026 draft",
+    "Averaged 5.8 PPG / 1.6 RPG / 1.1 APG in 2025",
+    "Provides veteran presence on a roster dominated by 22-or-younger and rookies"
   ]},
-  // === 2026 ROOKIE CLASS (jersey numbers TBD) ===
-  { num: null, name: "Lauren Betts", pos: "C", posCat: "C", college: "UCLA", age: 22, ht: "6'7\"", img: HEAD(5105737), tags: ["#4 Pick", "NCAA Champion", "MOP"], rookie: true, url: "https://www.wnba.com/player/1643427", facts: [
+  { num: 18, name: "Cassandre Prosper", pos: "G", posCat: "G", college: "Notre Dame", age: 22, ht: "6'3\"", country: "—", exp: "R", rookie: true, img: HEAD(1643467),
+    tags: ["#19 Pick"], url: "https://www.wnba.com/player/1643467", facts: [
+    "Drafted #19 overall in the 2026 WNBA Draft",
+    "Former Notre Dame teammate of Sonia Citron",
+    "6'3\" guard with size and length; capable from three",
+    "Scrappy on-floor energy noted by the Mystics broadcast team in preseason"
+  ]},
+  { num: 22, name: "Sonia Citron", pos: "G", posCat: "G", college: "Notre Dame", age: 22, ht: "6'1\"", country: "—", exp: "1 yr", rookie: false, img: HEAD(1642785),
+    tags: ["All-Star Rookie", "Led WNBA in 3PT%"], url: "https://www.wnba.com/player/1642785", facts: [
+    "2025 All-Star as a rookie — drafted 3rd overall in 2025",
+    "Led the entire WNBA in 3PT% at 44.5% — highest ever by a rookie (min. 125 attempts)",
+    "Averaged 14.9 PPG / 4.0 RPG / 2.4 APG with 47/44.5/87 splits",
+    "Tied franchise single-season record with 81 made threes",
+    "First rookie in Mystics history with a 25+ point, 10+ rebound game"
+  ]},
+  { num: 23, name: "Cotie McMahon", pos: "G", posCat: "G", college: "Ole Miss", age: 22, ht: "6'0\"", country: "—", exp: "R", rookie: true, img: HEAD(1643430),
+    tags: ["#11 Pick", "Started Preseason"], url: "https://www.wnba.com/player/1643430", facts: [
+    "Drafted #11 overall in the 2026 WNBA Draft",
+    "Big Ten Freshman of the Year at Ohio State in 2023; transferred to Ole Miss for her senior year",
+    "Averaged 19.5 PPG / 5.1 RPG / 3.0 APG at Ole Miss in 2025–26",
+    "Started both Mystics preseason games and averaged ~10 PPG",
+    "Speed and physicality on the wing; secondary ball-handler"
+  ]},
+  { num: 24, name: "Madison Scott", pos: "G/F", posCat: "F", college: "Ole Miss", age: 24, ht: "6'2\"", country: "USA", exp: "1 yr", rookie: false, img: HEAD(1642810),
+    tags: [], url: "https://www.wnba.com/player/1642810", facts: [
+    "Versatile wing out of Ole Miss",
+    "Helped the Rebels reach back-to-back Sweet 16s",
+    "Averaged 1.6 PPG in limited 2025 minutes"
+  ]},
+  { num: 32, name: "Angela Dugalić", pos: "F", posCat: "F", college: "UCLA", age: 24, ht: "6'4\"", country: "—", exp: "R", rookie: true, img: HEAD(1643455),
+    tags: ["#9 Pick", "NCAA Champion"], url: "https://www.wnba.com/player/1643455", facts: [
+    "Drafted #9 overall in the 2026 WNBA Draft",
+    "Lauren Betts's UCLA teammate — won the 2026 NCAA championship together",
+    "Big shooter with size; shot 50.2% from the field and 32.6% from three as a senior",
+    "Capable perimeter defender with positional versatility"
+  ]},
+  { num: 33, name: "Lucy Olsen", pos: "G", posCat: "G", college: "Iowa", age: 22, ht: "5'10\"", country: "—", exp: "1 yr", rookie: false, img: HEAD(1642802),
+    tags: [], url: "https://www.wnba.com/player/1642802", facts: [
+    "Caitlin Clark's successor at Iowa",
+    "Transferred from Villanova for her senior year and averaged over 18 PPG",
+    "Averaged 4.0 PPG / 1.2 RPG / 1.2 APG in her 2025 rookie season"
+  ]},
+  { num: 44, name: "Kiki Iriafen", pos: "F", posCat: "F", college: "USC", age: 22, ht: "6'3\"", country: "—", exp: "1 yr", rookie: false, img: HEAD(1642792),
+    tags: ["All-Star Rookie", "Double-Double Queen"], url: "https://www.wnba.com/player/1642792", facts: [
+    "2025 All-Star as a rookie — drafted 4th overall in 2025",
+    "Set Mystics single-season record with 16 double-doubles",
+    "13.3 PPG / 8.5 RPG — most rebounds by a rookie in franchise history",
+    "First Kia Rookie of the Month of 2025 (13.9/10.1 in May)",
+    "She and Citron are the first rookie All-Star teammates since 1999"
+  ]},
+  { num: 51, name: "Lauren Betts", pos: "C", posCat: "C", college: "UCLA", age: 22, ht: "6'7\"", country: "—", exp: "R", rookie: true, img: HEAD(1643427),
+    tags: ["#4 Pick", "NCAA Champion", "Final Four MOP"], url: "https://www.wnba.com/player/1643427", facts: [
     "Drafted #4 overall in the 2026 WNBA Draft",
     "Led UCLA to the program's first NCAA national championship and was named Final Four Most Outstanding Player",
     "2026 Big Ten Player of the Year and Big Ten Defensive Player of the Year",
@@ -814,51 +603,6 @@ const players = [
     "Born in Vitoria-Gasteiz, Spain; her father Andrew played for the British national team",
     "Averaged 18.6 PPG / 9.1 RPG / 2.5 BPG over her final two seasons at UCLA",
     "Averaged 15.0 PPG in Mystics preseason action"
-  ]},
-  { num: null, name: "Cotie McMahon", pos: "F", posCat: "F", college: "Ole Miss", age: 22, ht: "6'0\"", img: HEAD(4583144), tags: ["#11 Pick", "Started Preseason"], rookie: true, url: "https://www.wnba.com/players", facts: [
-    "Drafted #11 overall in the 2026 WNBA Draft",
-    "Big Ten Freshman of the Year at Ohio State in 2023; transferred to Ole Miss for her senior year",
-    "Averaged 19.5 PPG / 5.1 RPG / 3.0 APG at Ole Miss in 2025–26",
-    "Started both Mystics preseason games and averaged ~10 PPG",
-    "Speed and physicality on the wing; secondary ball-handler"
-  ]},
-  { num: null, name: "Angela Dugalić", pos: "F", posCat: "F", college: "UCLA", age: 24, ht: "6'4\"", img: HEAD(4433411), tags: ["#9 Pick", "NCAA Champion"], rookie: true, url: "https://www.wnba.com/players", facts: [
-    "Drafted #9 overall in the 2026 WNBA Draft",
-    "Lauren Betts' UCLA teammate — won the 2026 NCAA championship together",
-    "Big shooter with size; shot 50.2% from the field and 32.6% from three as a senior",
-    "Capable perimeter defender with positional versatility"
-  ]},
-  { num: null, name: "Cassandre Prosper", pos: "G", posCat: "G", college: "Notre Dame", age: 22, ht: "6'3\"", tags: ["#19 Pick"], rookie: true, url: "https://www.wnba.com/players", facts: [
-    "Drafted #19 overall in the 2026 WNBA Draft",
-    "Former Notre Dame teammate of Sonia Citron",
-    "6'3\" shooting guard with size and length; capable from three",
-    "Scrappy on-floor energy noted by the Mystics broadcast team in preseason"
-  ]},
-  { num: null, name: "Rori Harmon", pos: "G", posCat: "G", college: "Texas", age: 22, ht: "5'6\"", tags: ["#34 Pick", "Final Four"], rookie: true, url: "https://www.wnba.com/players", facts: [
-    "Drafted #34 overall in the 2026 WNBA Draft",
-    "Heart of the Texas teams that reached the Final Four in back-to-back seasons",
-    "5'6\" point guard from Houston; elite defender and floor leader",
-    "Played double-digit minutes in both Mystics preseason games"
-  ]},
-  { num: null, name: "Darianna Littlepage-Buggs", pos: "F", posCat: "F", college: "Baylor", age: 22, ht: "6'1\"", tags: ["#30 Pick", "Developmental"], rookie: true, url: "https://www.wnba.com/players", facts: [
-    "Drafted #30 overall in the 2026 WNBA Draft",
-    "Designated as a developmental player — eligible to be active in only 12 games this season",
-    "Exceptional rebounder out of Baylor"
-  ]},
-  // === OFFSEASON ADDITIONS ===
-  { num: 12, name: "Michaela Onyenwere", pos: "F", posCat: "F", college: "UCLA", age: 26, ht: "6'0\"", tags: ["Veteran"], rookie: false, url: "https://www.wnba.com/player/michaela-onyenwere", facts: [
-    "2021 WNBA Rookie of the Year (with the New York Liberty)",
-    "Joined the Mystics in free agency just ahead of the 2026 draft",
-    "Provides veteran presence on a roster with 12 of 14 players who are 22-or-younger or true rookies"
-  ]},
-  { num: null, name: "Alex Wilson", pos: "G", posCat: "G", college: "—", age: 32, ht: "5'9\"", tags: ["🇦🇺 WNBL"], rookie: true, url: "https://www.wnba.com/players", facts: [
-    "Oldest player on the Mystics roster",
-    "Was on the Australian WNBL's first team in 2025 and 2026",
-    "Brings veteran international experience despite being a WNBA rookie"
-  ]},
-  { num: null, name: "Alicia Flórez", pos: "G", posCat: "G", college: "—", age: 24, ht: "—", tags: ["Developmental"], rookie: true, url: "https://www.wnba.com/players", facts: [
-    "Signed to a developmental contract in early May 2026",
-    "Developmental players have limited active-game eligibility"
   ]},
 ];
 
@@ -879,32 +623,27 @@ function renderCards() {
   players.forEach((p, i) => {
     const card = document.createElement('div');
     card.className = 'card';
-    card.style.animationDelay = (i * 40) + 'ms';
-    card.dataset.num = p.num != null ? p.num : '';
+    card.style.animationDelay = (i * 35) + 'ms';
+    card.dataset.num = String(p.num);
     card.dataset.name = p.name.toLowerCase();
     card.dataset.posCat = p.posCat;
     card.dataset.rookie = p.rookie ? '1' : '0';
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
 
-    const numberBlock = p.num != null
-      ? `<div class="number"><span class="hash">#</span>${p.num}</div>`
-      : `<div class="number tbd">No.&nbsp;TBD</div>`;
-    const photoBlock = p.img
-      ? `<img class="photo" src="${p.img}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.classList.add('broken')">`
-      : '';
     const rookieBadge = p.rookie ? `<div class="rookie-badge">Rookie</div>` : '';
+    const country = p.country && p.country !== '—' ? ` · ${escapeHtml(p.country)}` : '';
 
     card.innerHTML = `
       <div class="photo-zone">
         ${rookieBadge}
         <div class="pos-tag">${escapeHtml(p.pos)}</div>
-        ${photoBlock}
-        ${numberBlock}
+        <img class="photo" src="${p.img}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.classList.add('broken')">
+        <div class="number"><span class="hash">#</span>${p.num}</div>
       </div>
       <div class="body">
         <div class="name">${escapeHtml(p.name)}</div>
-        <div class="college">${escapeHtml(p.college)} · Age ${p.age} · ${escapeHtml(p.ht)}</div>
+        <div class="college">${escapeHtml(p.college)} · Age ${p.age} · ${escapeHtml(p.ht)}${country}</div>
         <div class="tag-row">${p.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
         <div class="more"><span>View profile</span></div>
       </div>
@@ -918,15 +657,12 @@ function renderCards() {
 }
 
 function renderNumberPills() {
-  // Only render pills for players with assigned jersey numbers, sorted ascending
-  const numbered = players
-    .filter(p => p.num != null)
-    .sort((a, b) => a.num - b.num);
-  numbered.forEach(p => {
+  const sorted = [...players].sort((a, b) => a.num - b.num);
+  sorted.forEach(p => {
     const btn = document.createElement('button');
     btn.className = 'num-pill';
     btn.textContent = p.num;
-    btn.dataset.num = p.num;
+    btn.dataset.num = String(p.num);
     btn.setAttribute('aria-label', `Filter to jersey ${p.num}`);
     btn.addEventListener('click', () => {
       const target = String(p.num);
@@ -952,20 +688,14 @@ function applyFilters() {
     const name = card.dataset.name;
     const posCat = card.dataset.posCat;
     const isRookie = card.dataset.rookie === '1';
-
     let queryMatch = true;
     if (q !== '') {
-      if (isNumber) {
-        queryMatch = num !== '' && num.startsWith(q);
-      } else {
-        queryMatch = name.includes(q);
-      }
+      if (isNumber) queryMatch = num.startsWith(q);
+      else queryMatch = name.includes(q);
     }
-
     let posMatch = true;
     if (posFilter === 'ROOKIE') posMatch = isRookie;
     else if (posFilter !== 'ALL') posMatch = posCat === posFilter;
-
     const show = queryMatch && posMatch;
     card.classList.toggle('hidden', !show);
     if (show) visible++;
@@ -1002,25 +732,14 @@ const modal = document.getElementById('modal');
 const backdrop = document.getElementById('backdrop');
 
 function openModal(p) {
-  const numEl = document.getElementById('modalNum');
-  if (p.num != null) {
-    numEl.textContent = '#' + p.num;
-    numEl.classList.remove('tbd');
-  } else {
-    numEl.textContent = 'No. TBD';
-    numEl.classList.add('tbd');
-  }
+  document.getElementById('modalNum').textContent = '#' + p.num;
   document.getElementById('modalName').textContent = p.name;
-  document.getElementById('modalMeta').textContent = `${p.pos} · ${p.college} · Age ${p.age} · ${p.ht}`;
+  const country = p.country && p.country !== '—' ? ` · ${p.country}` : '';
+  document.getElementById('modalMeta').textContent = `${p.pos} · ${p.college} · Age ${p.age} · ${p.ht}${country} · Exp: ${p.exp}`;
   const photo = document.getElementById('modalPhoto');
   photo.classList.remove('broken');
-  if (p.img) {
-    photo.src = p.img;
-    photo.alt = p.name;
-  } else {
-    photo.removeAttribute('src');
-    photo.classList.add('broken');
-  }
+  photo.src = p.img;
+  photo.alt = p.name;
   document.getElementById('modalFacts').innerHTML = p.facts.map(f => `<li>${escapeHtml(f)}</li>`).join('');
   document.getElementById('modalLink').href = p.url;
   modal.classList.add('open');
