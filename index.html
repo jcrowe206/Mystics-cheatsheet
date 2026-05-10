@@ -16,6 +16,7 @@
   --red-glow: rgba(224, 58, 63, 0.4);
   --cream: #F5F1E8;
   --grey: #8B96A8;
+  --gold: #D4AF37;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -105,7 +106,7 @@ main {
   font-weight: 400;
   font-size: clamp(1.05rem, 1.5vw, 1.35rem);
   color: var(--cream);
-  max-width: 38rem;
+  max-width: 42rem;
   margin-top: 1.75rem;
   line-height: 1.55;
   opacity: 0.88;
@@ -203,12 +204,12 @@ main {
   outline: none;
   color: var(--cream);
   font-family: 'Big Shoulders Display', sans-serif;
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0;
   width: 100%;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 1.1;
 }
 .search-input input::placeholder { color: rgba(245, 241, 232, 0.2); }
 .search-clear {
@@ -225,9 +226,19 @@ main {
   pointer-events: none;
   transition: opacity 0.2s, transform 0.2s;
   margin-bottom: 0.5rem;
+  white-space: nowrap;
 }
 .search-clear.show { opacity: 1; pointer-events: auto; }
 .search-clear:hover { transform: translateY(-2px); }
+
+.search-hint {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--grey);
+  margin-top: 0.6rem;
+  position: relative;
+}
 
 .numbers-row {
   display: flex;
@@ -324,7 +335,7 @@ main {
 .card:hover::before { transform: scaleX(1); }
 .card.hidden { display: none; }
 
-/* === PHOTO ZONE === */
+/* PHOTO ZONE */
 .photo-zone {
   position: relative;
   height: 260px;
@@ -373,6 +384,13 @@ main {
   text-shadow: 2px 2px 0 rgba(0,0,0,0.25);
   pointer-events: none;
 }
+.card .number.tbd {
+  font-size: 3rem;
+  bottom: 1rem;
+  color: rgba(245, 241, 232, 0.55);
+  font-style: italic;
+  font-weight: 700;
+}
 .card .number .hash {
   color: var(--red);
   font-size: 2rem;
@@ -396,6 +414,21 @@ main {
   border: 1px solid rgba(245, 241, 232, 0.2);
   padding: 0.3rem 0.55rem;
   white-space: nowrap;
+}
+.card .rookie-badge {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 3;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--red);
+  padding: 0.3rem 0.55rem;
+  white-space: nowrap;
+  font-weight: 500;
 }
 
 .card .body {
@@ -558,6 +591,7 @@ main {
   letter-spacing: -0.04em;
   font-feature-settings: "tnum";
 }
+.modal-num.tbd { font-size: 2.5rem; opacity: 0.6; font-style: italic; }
 .modal-name {
   font-family: 'Big Shoulders Display', sans-serif;
   font-weight: 900;
@@ -589,12 +623,7 @@ main {
   align-items: center;
   gap: 0.6rem;
 }
-.modal-section-label::before {
-  content: '';
-  width: 14px;
-  height: 1px;
-  background: var(--red);
-}
+.modal-section-label::before { content: ''; width: 14px; height: 1px; background: var(--red); }
 
 .fact-list { list-style: none; padding: 0; }
 .fact-list li {
@@ -631,10 +660,7 @@ main {
   margin-top: 0.5rem;
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.modal-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px var(--red-glow);
-}
+.modal-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--red-glow); }
 
 /* === FOOTER === */
 footer {
@@ -676,12 +702,12 @@ footer .credit { display: block; margin-top: 0.5rem; font-size: 0.6rem; opacity:
 
   <section class="hero">
     <h1>Washington<br><span class="accent">Mystics</span></h1>
-    <p class="lede">A youth-driven roster led by All-Star rookies <em>Sonia Citron</em> and <em>Kiki Iriafen</em>, anchored by Comeback Player <em>Shakira Austin</em>, and finally healthy point guard <em>Georgia Amoore</em>.</p>
+    <p class="lede">A radically retooled, youth-driven roster — six rookies headlined by <em>Lauren Betts</em>, returning All-Stars <em>Sonia Citron</em> and <em>Kiki Iriafen</em>, anchor <em>Shakira Austin</em>, and finally healthy point guard <em>Georgia Amoore</em>. <strong style="color: var(--red); font-weight: 600">12 of 14 are 22-or-younger or rookies.</strong></p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="num">1</div><div class="label">WNBA Title · 2019</div></div>
-      <div class="hero-stat"><div class="num">12</div><div class="label">Active Players</div></div>
-      <div class="hero-stat"><div class="num">'98</div><div class="label">Founded</div></div>
-      <div class="hero-stat"><div class="num">DC</div><div class="label">CareFirst Arena</div></div>
+      <div class="hero-stat"><div class="num">14</div><div class="label">Active Roster</div></div>
+      <div class="hero-stat"><div class="num">6</div><div class="label">2026 Rookies</div></div>
+      <div class="hero-stat"><div class="num">A+</div><div class="label">ESPN Draft Grade</div></div>
     </div>
   </section>
 
@@ -691,31 +717,33 @@ footer .credit { display: block; margin-top: 0.5rem; font-size: 0.6rem; opacity:
   </div>
 
   <div class="search-shell">
-    <div class="search-label">Type a jersey number</div>
+    <div class="search-label">Type a jersey number or name</div>
     <div class="search-input">
-      <input type="text" id="searchInput" inputmode="numeric" pattern="[0-9]*" placeholder="00" maxlength="2" autocomplete="off" aria-label="Filter players by jersey number">
+      <input type="text" id="searchInput" placeholder="22 or BETTS" maxlength="20" autocomplete="off" aria-label="Filter by jersey number or name">
       <button class="search-clear" id="clearBtn" aria-label="Clear search">Clear</button>
     </div>
+    <div class="search-hint">New rookies haven't been assigned jersey numbers yet — search by name to find them.</div>
     <div class="numbers-row" id="numRow"></div>
     <div class="position-row">
       <button class="pos-pill active" data-pos="ALL">All Positions</button>
       <button class="pos-pill" data-pos="G">Guards</button>
       <button class="pos-pill" data-pos="F">Forwards</button>
       <button class="pos-pill" data-pos="C">Centers</button>
+      <button class="pos-pill" data-pos="ROOKIE">Rookies Only</button>
     </div>
   </div>
 
   <div class="section-head">
     <h2>The <span class="accent">roster</span></h2>
-    <span class="index">— 02 / 12 Players</span>
+    <span class="index">— 02 / 14 Players</span>
   </div>
 
   <div class="grid" id="grid"></div>
-  <div class="empty" id="empty">No player matches that number. Try another.</div>
+  <div class="empty" id="empty">No player matches that. Try another number or name.</div>
 
   <footer>
     Cheat sheet · Go Mystics <span class="accent">★</span> #TogetherDC
-    <span class="credit">Player photos courtesy ESPN · Data via WNBA</span>
+    <span class="credit">2026 opening-night roster via ESPN · Player photos courtesy ESPN · Jersey numbers per CBS Sports (TBD for rookies)</span>
   </footer>
 </main>
 
@@ -742,66 +770,95 @@ footer .credit { display: block; margin-top: 0.5rem; font-size: 0.6rem; opacity:
 <script>
 const HEAD = id => `https://a.espncdn.com/i/headshots/wnba/players/full/${id}.png`;
 
+// 2026 OPENING-NIGHT ROSTER (14 players, including 2 developmental marked ^)
+// Order: returning veterans first, then 2026 rookie class, then new vets
 const players = [
-  { num: 0, name: "Shakira Austin", pos: "F/C", posCat: "F", college: "Ole Miss", age: 25, ht: "6'5\"", img: HEAD(4398911), tags: ["Comeback POY '25"], url: "https://www.wnba.com/player/shakira-austin", facts: [
+  // === RETURNING ===
+  { num: 0, name: "Shakira Austin", pos: "F/C", posCat: "F", college: "Ole Miss", age: 25, ht: "6'5\"", img: HEAD(4398911), tags: ["Comeback POY '25"], rookie: false, url: "https://www.wnba.com/player/shakira-austin", facts: [
     "2025 AP Comeback Player of the Year after injury wiped out most of 2024",
-    "Career highs in points (12.7), assists, and blocks in 2025",
-    "Team's highest-paid player; re-signed with Washington in April 2026",
-    "Anchors the rim with 6.4 RPG and 1.1 BPG"
+    "Re-signed with the Mystics on a 3-year, $3.57M deal in April 2026 after Washington matched a Toronto Tempo offer sheet",
+    "Career highs in 2025 in points (12.7), assists, and blocks",
+    "Anchors the rim with 6.4 RPG and 1.1 BPG; team's highest-paid player"
   ]},
-  { num: 1, name: "Sug Sutton", pos: "G", posCat: "G", college: "Texas", age: 27, ht: "5'8\"", img: HEAD(4068159), tags: [], url: "https://www.wnba.com/player/sug-sutton", facts: [
-    "Veteran guard depth in the rotation",
-    "All-Big 12 selection during her time at Texas"
-  ]},
-  { num: 4, name: "Jacy Sheldon", pos: "G", posCat: "G", college: "Ohio State", age: 25, ht: "5'10\"", img: HEAD(4432865), tags: ["Defense"], url: "https://www.wnba.com/player/jacy-sheldon", facts: [
-    "Defensive-minded guard from Ohio State",
-    "Two-time Big Ten Defensive Player of the Year in college"
-  ]},
-  { num: 5, name: "Jade Melbourne", pos: "G", posCat: "G", college: "—", age: 23, ht: "5'10\"", img: HEAD(5017726), tags: ["🇦🇺 Australia"], url: "https://www.wnba.com/player/jade-melbourne", facts: [
-    "One of two Australians on the roster",
-    "Has represented the Opals (Australia's senior national team)"
-  ]},
-  { num: 6, name: "Madison Scott", pos: "G/F", posCat: "F", college: "Ole Miss", age: 24, ht: "6'2\"", img: HEAD(4433416), tags: [], url: "https://www.wnba.com/player/madison-scott", facts: [
-    "Versatile wing out of Ole Miss",
-    "Helped the Rebels reach back-to-back Sweet 16s"
-  ]},
-  { num: 8, name: "Georgia Amoore", pos: "G", posCat: "G", college: "Kentucky", age: 24, ht: "5'6\"", img: HEAD(4704180), tags: ["🇦🇺 Australia", "True rookie"], url: "https://www.wnba.com/player/georgia-amoore", facts: [
-    "5'6\" point guard from Ballarat, Victoria — drafted #6 overall in 2025",
-    "Tore her ACL in the 2nd practice of training camp; missed all of 2025",
-    "True rookie season is now — eligible for 2026 Rookie of the Year",
-    "Led Virginia Tech to the 2023 Final Four; averaged 19.6/6.9 at Kentucky",
-    "Recorded the first triple-double in Virginia Tech program history"
-  ]},
-  { num: 21, name: "Emily Engstler", pos: "F", posCat: "F", college: "Louisville", age: 25, ht: "6'1\"", img: HEAD(4398729), tags: [], url: "https://www.wnba.com/player/emily-engstler", facts: [
-    "Versatile forward known for energy and playmaking from the wing",
-    "Helped Louisville reach the Final Four in 2022"
-  ]},
-  { num: 22, name: "Sonia Citron", pos: "G", posCat: "G", college: "Notre Dame", age: 22, ht: "6'1\"", img: HEAD(4433524), tags: ["All-Star Rookie", "Led WNBA in 3PT%"], url: "https://www.wnba.com/player/sonia-citron", facts: [
+  { num: 22, name: "Sonia Citron", pos: "G", posCat: "G", college: "Notre Dame", age: 22, ht: "6'1\"", img: HEAD(4433524), tags: ["All-Star Rookie", "Led WNBA in 3PT%"], rookie: false, url: "https://www.wnba.com/player/sonia-citron", facts: [
     "2025 All-Star as a rookie — drafted 3rd overall in 2025",
     "Led the entire WNBA in 3PT% at 44.5% — highest ever by a rookie (min. 125 attempts)",
     "Averaged 14.9 PPG / 4.0 RPG / 2.4 APG with 47/44.5/87 splits",
     "Tied franchise single-season record with 81 made threes",
     "First rookie in Mystics history with a 25+ point, 10+ rebound game"
   ]},
-  { num: 31, name: "Stefanie Dolson", pos: "C", posCat: "C", college: "UConn", age: 34, ht: "6'5\"", img: HEAD(2529183), tags: ["Olympic Gold"], url: "https://www.wnba.com/player/stefanie-dolson", facts: [
-    "2x NCAA champion at UConn",
-    "Olympic GOLD medalist in 3x3 basketball at Tokyo 2020",
-    "Veteran presence and locker-room voice"
-  ]},
-  { num: 32, name: "Alysha Clark", pos: "F", posCat: "F", college: "Middle Tennessee", age: 38, ht: "5'11\"", img: HEAD(924), tags: ["3× Champion"], url: "https://www.wnba.com/player/alysha-clark", facts: [
-    "3x WNBA Champion (Seattle 2018, Seattle 2020, Las Vegas 2023)",
-    "Elder of the squad and respected defensive specialist"
-  ]},
-  { num: 33, name: "Lucy Olsen", pos: "G", posCat: "G", college: "Iowa", age: 22, ht: "5'10\"", img: HEAD(4433815), tags: [], url: "https://www.wnba.com/player/lucy-olsen", facts: [
-    "Caitlin Clark's successor at Iowa",
-    "Transferred from Villanova for her senior year and averaged over 18 PPG"
-  ]},
-  { num: 44, name: "Kiki Iriafen", pos: "F", posCat: "F", college: "USC", age: 22, ht: "6'3\"", img: HEAD(4898384), tags: ["All-Star Rookie", "Double-Double Queen"], url: "https://www.wnba.com/player/kiki-iriafen", facts: [
+  { num: 44, name: "Kiki Iriafen", pos: "F", posCat: "F", college: "USC", age: 23, ht: "6'3\"", img: HEAD(4898384), tags: ["All-Star Rookie", "Double-Double Queen"], rookie: false, url: "https://www.wnba.com/player/kiki-iriafen", facts: [
     "2025 All-Star as a rookie — drafted 4th overall in 2025",
     "Set Mystics single-season record with 16 double-doubles",
     "13.3 PPG / 8.5 RPG — most rebounds by a rookie in franchise history",
     "First Kia Rookie of the Month of 2025 (13.9/10.1 in May)",
     "She and Citron are the first rookie All-Star teammates since 1999"
+  ]},
+  { num: 8, name: "Georgia Amoore", pos: "G", posCat: "G", college: "Kentucky", age: 25, ht: "5'6\"", img: HEAD(4704180), tags: ["🇦🇺 Australia", "True Rookie"], rookie: false, url: "https://www.wnba.com/player/georgia-amoore", facts: [
+    "5'6\" point guard from Ballarat, Victoria — drafted #6 overall in 2025",
+    "Tore her ACL in the 2nd practice of training camp; missed all of 2025",
+    "True rookie season is now — eligible for 2026 Rookie of the Year",
+    "Led Virginia Tech to the 2023 Final Four; averaged 19.6 / 6.9 at Kentucky",
+    "Recorded the first triple-double in Virginia Tech program history"
+  ]},
+  { num: 33, name: "Lucy Olsen", pos: "G", posCat: "G", college: "Iowa", age: 22, ht: "5'10\"", img: HEAD(4433815), tags: [], rookie: false, url: "https://www.wnba.com/player/lucy-olsen", facts: [
+    "Caitlin Clark's successor at Iowa",
+    "Transferred from Villanova for her senior year and averaged over 18 PPG"
+  ]},
+  // === 2026 ROOKIE CLASS (jersey numbers TBD) ===
+  { num: null, name: "Lauren Betts", pos: "C", posCat: "C", college: "UCLA", age: 22, ht: "6'7\"", img: HEAD(5105737), tags: ["#4 Pick", "NCAA Champion", "MOP"], rookie: true, url: "https://www.wnba.com/player/1643427", facts: [
+    "Drafted #4 overall in the 2026 WNBA Draft",
+    "Led UCLA to the program's first NCAA national championship and was named Final Four Most Outstanding Player",
+    "2026 Big Ten Player of the Year and Big Ten Defensive Player of the Year",
+    "Two-time consensus All-American; won the Honda Sport Award and the Lisa Leslie Award (best center)",
+    "Born in Vitoria-Gasteiz, Spain; her father Andrew played for the British national team",
+    "Averaged 18.6 PPG / 9.1 RPG / 2.5 BPG over her final two seasons at UCLA",
+    "Averaged 15.0 PPG in Mystics preseason action"
+  ]},
+  { num: null, name: "Cotie McMahon", pos: "F", posCat: "F", college: "Ole Miss", age: 22, ht: "6'0\"", img: HEAD(4583144), tags: ["#11 Pick", "Started Preseason"], rookie: true, url: "https://www.wnba.com/players", facts: [
+    "Drafted #11 overall in the 2026 WNBA Draft",
+    "Big Ten Freshman of the Year at Ohio State in 2023; transferred to Ole Miss for her senior year",
+    "Averaged 19.5 PPG / 5.1 RPG / 3.0 APG at Ole Miss in 2025–26",
+    "Started both Mystics preseason games and averaged ~10 PPG",
+    "Speed and physicality on the wing; secondary ball-handler"
+  ]},
+  { num: null, name: "Angela Dugalić", pos: "F", posCat: "F", college: "UCLA", age: 24, ht: "6'4\"", img: HEAD(4433411), tags: ["#9 Pick", "NCAA Champion"], rookie: true, url: "https://www.wnba.com/players", facts: [
+    "Drafted #9 overall in the 2026 WNBA Draft",
+    "Lauren Betts' UCLA teammate — won the 2026 NCAA championship together",
+    "Big shooter with size; shot 50.2% from the field and 32.6% from three as a senior",
+    "Capable perimeter defender with positional versatility"
+  ]},
+  { num: null, name: "Cassandre Prosper", pos: "G", posCat: "G", college: "Notre Dame", age: 22, ht: "6'3\"", tags: ["#19 Pick"], rookie: true, url: "https://www.wnba.com/players", facts: [
+    "Drafted #19 overall in the 2026 WNBA Draft",
+    "Former Notre Dame teammate of Sonia Citron",
+    "6'3\" shooting guard with size and length; capable from three",
+    "Scrappy on-floor energy noted by the Mystics broadcast team in preseason"
+  ]},
+  { num: null, name: "Rori Harmon", pos: "G", posCat: "G", college: "Texas", age: 22, ht: "5'6\"", tags: ["#34 Pick", "Final Four"], rookie: true, url: "https://www.wnba.com/players", facts: [
+    "Drafted #34 overall in the 2026 WNBA Draft",
+    "Heart of the Texas teams that reached the Final Four in back-to-back seasons",
+    "5'6\" point guard from Houston; elite defender and floor leader",
+    "Played double-digit minutes in both Mystics preseason games"
+  ]},
+  { num: null, name: "Darianna Littlepage-Buggs", pos: "F", posCat: "F", college: "Baylor", age: 22, ht: "6'1\"", tags: ["#30 Pick", "Developmental"], rookie: true, url: "https://www.wnba.com/players", facts: [
+    "Drafted #30 overall in the 2026 WNBA Draft",
+    "Designated as a developmental player — eligible to be active in only 12 games this season",
+    "Exceptional rebounder out of Baylor"
+  ]},
+  // === OFFSEASON ADDITIONS ===
+  { num: 12, name: "Michaela Onyenwere", pos: "F", posCat: "F", college: "UCLA", age: 26, ht: "6'0\"", tags: ["Veteran"], rookie: false, url: "https://www.wnba.com/player/michaela-onyenwere", facts: [
+    "2021 WNBA Rookie of the Year (with the New York Liberty)",
+    "Joined the Mystics in free agency just ahead of the 2026 draft",
+    "Provides veteran presence on a roster with 12 of 14 players who are 22-or-younger or true rookies"
+  ]},
+  { num: null, name: "Alex Wilson", pos: "G", posCat: "G", college: "—", age: 32, ht: "5'9\"", tags: ["🇦🇺 WNBL"], rookie: true, url: "https://www.wnba.com/players", facts: [
+    "Oldest player on the Mystics roster",
+    "Was on the Australian WNBL's first team in 2025 and 2026",
+    "Brings veteran international experience despite being a WNBA rookie"
+  ]},
+  { num: null, name: "Alicia Flórez", pos: "G", posCat: "G", college: "—", age: 24, ht: "—", tags: ["Developmental"], rookie: true, url: "https://www.wnba.com/players", facts: [
+    "Signed to a developmental contract in early May 2026",
+    "Developmental players have limited active-game eligibility"
   ]},
 ];
 
@@ -812,7 +869,7 @@ const clearBtn = document.getElementById('clearBtn');
 const empty = document.getElementById('empty');
 
 let posFilter = 'ALL';
-let numFilter = '';
+let queryFilter = '';
 
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -822,16 +879,28 @@ function renderCards() {
   players.forEach((p, i) => {
     const card = document.createElement('div');
     card.className = 'card';
-    card.style.animationDelay = (i * 45) + 'ms';
-    card.dataset.num = p.num;
+    card.style.animationDelay = (i * 40) + 'ms';
+    card.dataset.num = p.num != null ? p.num : '';
+    card.dataset.name = p.name.toLowerCase();
     card.dataset.posCat = p.posCat;
+    card.dataset.rookie = p.rookie ? '1' : '0';
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
+
+    const numberBlock = p.num != null
+      ? `<div class="number"><span class="hash">#</span>${p.num}</div>`
+      : `<div class="number tbd">No.&nbsp;TBD</div>`;
+    const photoBlock = p.img
+      ? `<img class="photo" src="${p.img}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.classList.add('broken')">`
+      : '';
+    const rookieBadge = p.rookie ? `<div class="rookie-badge">Rookie</div>` : '';
+
     card.innerHTML = `
       <div class="photo-zone">
+        ${rookieBadge}
         <div class="pos-tag">${escapeHtml(p.pos)}</div>
-        <img class="photo" src="${p.img}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.classList.add('broken')">
-        <div class="number"><span class="hash">#</span>${p.num}</div>
+        ${photoBlock}
+        ${numberBlock}
       </div>
       <div class="body">
         <div class="name">${escapeHtml(p.name)}</div>
@@ -849,19 +918,24 @@ function renderCards() {
 }
 
 function renderNumberPills() {
-  players.forEach(p => {
+  // Only render pills for players with assigned jersey numbers, sorted ascending
+  const numbered = players
+    .filter(p => p.num != null)
+    .sort((a, b) => a.num - b.num);
+  numbered.forEach(p => {
     const btn = document.createElement('button');
     btn.className = 'num-pill';
     btn.textContent = p.num;
     btn.dataset.num = p.num;
     btn.setAttribute('aria-label', `Filter to jersey ${p.num}`);
     btn.addEventListener('click', () => {
-      if (numFilter === String(p.num)) {
-        numFilter = '';
+      const target = String(p.num);
+      if (queryFilter === target) {
+        queryFilter = '';
         searchInput.value = '';
       } else {
-        numFilter = String(p.num);
-        searchInput.value = String(p.num);
+        queryFilter = target;
+        searchInput.value = target;
       }
       applyFilters();
     });
@@ -870,32 +944,46 @@ function renderNumberPills() {
 }
 
 function applyFilters() {
+  const q = queryFilter.trim().toLowerCase();
+  const isNumber = q !== '' && /^\d+$/.test(q);
   let visible = 0;
   document.querySelectorAll('.card').forEach(card => {
     const num = card.dataset.num;
+    const name = card.dataset.name;
     const posCat = card.dataset.posCat;
-    const numMatch = !numFilter || num.startsWith(numFilter);
-    const posMatch = posFilter === 'ALL' || posCat === posFilter;
-    const show = numMatch && posMatch;
+    const isRookie = card.dataset.rookie === '1';
+
+    let queryMatch = true;
+    if (q !== '') {
+      if (isNumber) {
+        queryMatch = num !== '' && num.startsWith(q);
+      } else {
+        queryMatch = name.includes(q);
+      }
+    }
+
+    let posMatch = true;
+    if (posFilter === 'ROOKIE') posMatch = isRookie;
+    else if (posFilter !== 'ALL') posMatch = posCat === posFilter;
+
+    const show = queryMatch && posMatch;
     card.classList.toggle('hidden', !show);
     if (show) visible++;
   });
   empty.classList.toggle('show', visible === 0);
   document.querySelectorAll('.num-pill').forEach(p => {
-    p.classList.toggle('active', p.dataset.num === numFilter);
+    p.classList.toggle('active', isNumber && p.dataset.num === q);
   });
-  clearBtn.classList.toggle('show', !!numFilter);
+  clearBtn.classList.toggle('show', q !== '');
 }
 
 searchInput.addEventListener('input', e => {
-  const v = e.target.value.replace(/[^0-9]/g, '');
-  e.target.value = v;
-  numFilter = v;
+  queryFilter = e.target.value;
   applyFilters();
 });
 
 clearBtn.addEventListener('click', () => {
-  numFilter = '';
+  queryFilter = '';
   searchInput.value = '';
   searchInput.focus();
   applyFilters();
@@ -914,13 +1002,25 @@ const modal = document.getElementById('modal');
 const backdrop = document.getElementById('backdrop');
 
 function openModal(p) {
-  document.getElementById('modalNum').textContent = '#' + p.num;
+  const numEl = document.getElementById('modalNum');
+  if (p.num != null) {
+    numEl.textContent = '#' + p.num;
+    numEl.classList.remove('tbd');
+  } else {
+    numEl.textContent = 'No. TBD';
+    numEl.classList.add('tbd');
+  }
   document.getElementById('modalName').textContent = p.name;
   document.getElementById('modalMeta').textContent = `${p.pos} · ${p.college} · Age ${p.age} · ${p.ht}`;
   const photo = document.getElementById('modalPhoto');
   photo.classList.remove('broken');
-  photo.src = p.img;
-  photo.alt = p.name;
+  if (p.img) {
+    photo.src = p.img;
+    photo.alt = p.name;
+  } else {
+    photo.removeAttribute('src');
+    photo.classList.add('broken');
+  }
   document.getElementById('modalFacts').innerHTML = p.facts.map(f => `<li>${escapeHtml(f)}</li>`).join('');
   document.getElementById('modalLink').href = p.url;
   modal.classList.add('open');
